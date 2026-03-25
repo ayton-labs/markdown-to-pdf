@@ -20,4 +20,4 @@ COPY . .
 
 EXPOSE 8787
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8787", "--workers", "2", "server:app"]
+CMD gunicorn --bind 0.0.0.0:${PORT:-8787} --workers 2 server:app
