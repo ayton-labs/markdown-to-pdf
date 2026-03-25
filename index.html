@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown to PDF — Free Converter | No Sign-Up, Unlimited</title>
+  <meta name="description" content="Convert markdown to clean, professional PDFs instantly. Free, unlimited, no sign-up. Paste your markdown, get a PDF. Built for people tired of paywalls.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Markdown to PDF — Free Converter">
+  <meta property="og:description" content="Paste your markdown, get a clean PDF. Free, unlimited, no sign-up. Built for people tired of paywalls.">
+  <meta property="og:image" content="/static/og-image.png">
+  <meta property="og:url" content="">
+
+  <!-- Twitter / LinkedIn -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Markdown to PDF — Free Converter">
+  <meta name="twitter:description" content="Paste your markdown, get a clean PDF. Free, unlimited, no sign-up.">
+  <meta name="twitter:image" content="/static/og-image.png">
+
+  <!-- Canonical (update when domain is live) -->
+  <link rel="canonical" href="">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Markdown to PDF",
+    "description": "Free online markdown to PDF converter. Paste markdown, get a clean professional PDF. No sign-up, no limits.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "featureList": ["Live preview", "Instant PDF download", "No sign-up required", "Unlimited conversions", "No data stored"]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23E06B4B'/><text x='50' y='68' font-family='Arial,sans-serif' font-size='42' font-weight='900' fill='white' text-anchor='middle'>PDF</text></svg>">
+
+  <!-- Fonts: preconnect for speed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <span class="doc-label">DOCUMENT NAME</span>
+    <div class="doc-name-wrap">
+      <input type="text" id="doc-name" value="Untitled Document" spellcheck="false">
+      <svg class="doc-name-icon" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M11.5 1.5l3 3L5 14H2v-3L11.5 1.5z"/></svg>
+    </div>
+  </div>
+  <div class="header-right">
+    <button id="download-btn">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;vertical-align:-2px"><path d="M8 2v9m0 0l-3-3m3 3l3-3M2 13h12"/></svg>
+      Download
+    </button>
+  </div>
+</header>
+
+<main>
+  <aside class="sidebar">
+    <div class="sidebar-content">
+      <div class="sidebar-widget">
+        <h1 class="widget-headline">Markdown in.<br>PDF out.<br>No drama.</h1>
+        <p class="widget-sub">Built by someone who got tired of paying per PDF. You're welcome.</p>
+      </div>
+
+      <div class="sidebar-stats" id="stats">
+        <div class="stat">
+          <span class="stat-value" id="stat-words">0</span>
+          <span class="stat-label">words</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-lines">0</span>
+          <span class="stat-label">lines</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-headings">0</span>
+          <span class="stat-label">sections</span>
+        </div>
+      </div>
+
+      <div class="sidebar-tip" id="tip"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-brand">
+        <div class="sidebar-logo">P</div>
+        <span class="sidebar-title">Practical AI</span>
+      </div>
+      <a href="https://practical-ai-for-business.co.uk" target="_blank" class="sidebar-cta">
+        Want AI to write the markdown too?
+        <span class="cta-url">practical-ai-for-business.co.uk</span>
+        <span class="cta-arrow">&rarr;</span>
+      </a>
+    </div>
+  </aside>
+
+  <div class="editor-pane">
+    <div class="line-numbers" id="line-numbers"></div>
+    <textarea id="editor" spellcheck="false" placeholder="Paste your markdown here..."></textarea>
+  </div>
+  <div class="divider"></div>
+  <div class="preview-pane">
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">PDF</div>
+      <h2>Your preview lives here</h2>
+      <p>Start typing markdown on the left and watch it come to life.</p>
+      <div class="empty-hints">
+        <span># Heading</span>
+        <span>**Bold**</span>
+        <span>- List item</span>
+        <span>---</span>
+      </div>
+    </div>
+    <div id="preview"></div>
+  </div>
+</main>
+
+<!-- SEO: static content for crawlers (hidden visually, indexable) -->
+<section class="seo-content" aria-label="About this tool">
+  <h2>Free Markdown to PDF Converter</h2>
+  <p>Convert your markdown files to clean, professional PDFs in seconds. No sign-up required, no limits, no data stored. Just paste your markdown, preview it live, and download a perfectly formatted PDF.</p>
+  <h3>How it works</h3>
+  <p>Type or paste markdown in the editor. See a live preview update instantly. Click download to generate a PDF using the same styling you see on screen. Your content never leaves your browser until you hit download — and even then, nothing is stored.</p>
+  <h3>Why this tool?</h3>
+  <p>Most markdown to PDF converters are paywalled, require sign-up, or produce ugly output. This one is free, unlimited, and produces clean PDFs you'd be happy to send to a client.</p>
+</section>
+
+<noscript>
+  <div style="padding:40px;text-align:center;font-family:sans-serif">
+    <h1>Markdown to PDF — Free Converter</h1>
+    <p>This tool requires JavaScript to run. Please enable JavaScript to convert your markdown to PDF.</p>
+  </div>
+</noscript>
+
+<!-- Welcome modal (first visit only) -->
+<div class="modal-overlay" id="welcome-modal" style="display:none">
+  <div class="modal">
+    <div class="modal-visual">
+      <div class="modal-emoji">😤</div>
+      <div class="modal-badge">FREE FOREVER<br>NO SIGN-UP</div>
+      <div class="modal-emoji">📄</div>
+    </div>
+    <div class="modal-body">
+      <h2>Markdown is <span>powerful</span>.<br>Reading it raw is <span>painful</span>.</h2>
+      <p>If you've started using Claude, ChatGPT, or any AI tool — you've probably been handed walls of markdown you can't easily share.</p>
+      <p><strong>I got tired of paying per PDF.</strong> So I built this. Paste your markdown, get a clean PDF. That's it.</p>
+      <div class="modal-features">
+        <span>✏️ Live preview</span>
+        <span>📥 Instant PDF</span>
+        <span>🔒 Nothing stored</span>
+        <span>♾️ Unlimited</span>
+      </div>
+      <button class="modal-dismiss" id="modal-close">Let's go →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const editor = document.getElementById('editor');
+  const preview = document.getElementById('preview');
+  const lineNumbers = document.getElementById('line-numbers');
+  const downloadBtn = document.getElementById('download-btn');
+  const docName = document.getElementById('doc-name');
+
+  const emptyState = document.getElementById('empty-state');
+
+  // Live preview
+  function updatePreview() {
+    const hasContent = editor.value.trim().length > 0;
+    emptyState.style.display = hasContent ? 'none' : 'flex';
+    preview.style.display = hasContent ? 'block' : 'none';
+    if (hasContent) {
+      preview.innerHTML = marked.parse(editor.value);
+    }
+    updateLineNumbers();
+  }
+
+  // Line numbers — always fill the visible area
+  function updateLineNumbers() {
+    const editorHeight = editor.clientHeight;
+    const lineHeight = parseFloat(getComputedStyle(editor).lineHeight);
+    const visibleLines = Math.ceil(editorHeight / lineHeight);
+    const contentLines = editor.value.split('\n').length;
+    const totalLines = Math.max(contentLines, visibleLines);
+    let html = '';
+    for (let i = 1; i <= totalLines; i++) {
+      html += i + '\n';
+    }
+    lineNumbers.textContent = html;
+  }
+
+  // Sync scroll between editor and line numbers
+  editor.addEventListener('scroll', () => {
+    lineNumbers.scrollTop = editor.scrollTop;
+  });
+
+  editor.addEventListener('input', updatePreview);
+
+  // Auto-detect document name from H1
+  editor.addEventListener('input', () => {
+    const h1Match = editor.value.match(/^#\s+(.+)/m);
+    if (h1Match) {
+      docName.value = h1Match[1].trim();
+    }
+  });
+
+  // Download PDF
+  downloadBtn.addEventListener('click', async () => {
+    const md = editor.value;
+    if (!md.trim()) return;
+
+    downloadBtn.innerHTML = '<span class="spinner"></span> Generating...';
+    downloadBtn.disabled = true;
+
+    try {
+      const res = await fetch('/pdf?style=proposal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: md,
+      });
+
+      if (!res.ok) throw new Error('PDF generation failed');
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const filename = docName.value.replace(/[^\w\s\u2014\u2013-]/g, '').trim() + '.pdf' || 'document.pdf';
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Error: ' + err.message);
+    } finally {
+      downloadBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;vertical-align:-2px"><path d="M8 2v9m0 0l-3-3m3 3l3-3M2 13h12"/></svg> Download';
+      downloadBtn.disabled = false;
+    }
+  });
+
+  // Keyboard shortcut: Cmd/Ctrl+Enter to download
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      downloadBtn.click();
+    }
+  });
+
+  // Tab key inserts spaces
+  editor.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+      editor.selectionStart = editor.selectionEnd = start + 2;
+      updatePreview();
+    }
+  });
+
+  // Sidebar stats
+  function updateStats() {
+    const text = editor.value;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const lines = text.split('\n').length;
+    const headings = (text.match(/^#{1,3}\s/gm) || []).length;
+    document.getElementById('stat-words').textContent = words;
+    document.getElementById('stat-lines').textContent = lines;
+    document.getElementById('stat-headings').textContent = headings;
+  }
+  editor.addEventListener('input', updateStats);
+
+  // Rotating tips
+  const tips = [
+    "Tip: Cmd+Enter downloads your PDF instantly.",
+    "Tip: The H1 heading becomes your filename.",
+    "Tip: Bold labels before bullet lists? No blank line needed.",
+    "Tip: Your data stays local — nothing is stored or sent anywhere.",
+    "Fun fact: This tool exists because markdowntopdf.com has a paywall.",
+    "Tip: Tab key inserts spaces, not a tab character.",
+    "Tip: Tables work too. Use standard markdown table syntax.",
+  ];
+  const tipEl = document.getElementById('tip');
+  let tipIndex = Math.floor(Math.random() * tips.length);
+  tipEl.textContent = tips[tipIndex];
+  setInterval(() => {
+    tipIndex = (tipIndex + 1) % tips.length;
+    tipEl.style.opacity = 0;
+    setTimeout(() => {
+      tipEl.textContent = tips[tipIndex];
+      tipEl.style.opacity = 1;
+    }, 300);
+  }, 8000);
+
+  // Welcome modal (first visit only)
+  const welcomeModal = document.getElementById('welcome-modal');
+  const modalClose = document.getElementById('modal-close');
+
+  if (!localStorage.getItem('md2pdf-welcomed')) {
+    welcomeModal.style.display = 'flex';
+  }
+
+  modalClose.addEventListener('click', () => {
+    welcomeModal.style.opacity = '0';
+    welcomeModal.style.transition = 'opacity 0.25s ease';
+    setTimeout(() => {
+      welcomeModal.style.display = 'none';
+      localStorage.setItem('md2pdf-welcomed', '1');
+      editor.focus();
+    }, 250);
+  });
+
+  // Close modal on overlay click
+  welcomeModal.addEventListener('click', (e) => {
+    if (e.target === welcomeModal) modalClose.click();
+  });
+
+  // Close modal on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && welcomeModal.style.display === 'flex') {
+      modalClose.click();
+    }
+  });
+
+  // Init
+  updateLineNumbers();
+  updateStats();
+</script>
+
+</body>
+</html>
