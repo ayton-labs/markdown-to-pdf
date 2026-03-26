@@ -2,7 +2,7 @@
 
 @page {
   size: A4;
-  margin: 15mm 20mm;
+  margin: 15mm 16mm;
 }
 
 html {
@@ -12,59 +12,59 @@ html {
 
 body {
   font-family: Helvetica, Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  max-width: 700px;
+  max-width: none;
   margin: 0 auto;
   padding: 0;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 11.5px;
+  line-height: 1.45;
 }
 
 /* H1: light weight — the distinctive markdowntopdf.com look */
 h1 {
-  font-size: 1.85em;
+  font-size: 1.6em;
   font-weight: 300;
   color: #333;
   margin-top: 0;
-  margin-bottom: 0.15em;
-  line-height: 1.25;
+  margin-bottom: 0.1em;
+  line-height: 1.2;
 }
 
 h2 {
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 700;
   color: #1a1a1a;
-  margin-top: 0.6em;
-  margin-bottom: 0.4em;
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
 }
 
 h3 {
-  font-size: 1.1em;
+  font-size: 1.05em;
   font-weight: 700;
   color: #1a1a1a;
-  margin-top: 1em;
-  margin-bottom: 0.3em;
+  margin-top: 0.7em;
+  margin-bottom: 0.2em;
 }
 
 p {
-  margin: 0.6em 0;
+  margin: 0.35em 0;
 }
 
 hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 1.4em 0;
+  margin: 1em 0;
 }
 
 /* Lists — use list-style-position: inside to prevent orphaned markers on page breaks */
 ul, ol {
   padding-left: 2em;
-  margin: 0.5em 0;
+  margin: 0.3em 0;
   list-style-position: inside;
 }
 
 li {
-  margin: 0.25em 0;
-  line-height: 1.55;
+  margin: 0.15em 0;
+  line-height: 1.4;
   padding-left: 0.3em;
   text-indent: -0.3em;
 }
@@ -85,18 +85,18 @@ em {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1em 0;
+  margin: 0.6em 0;
 }
 
 th {
   text-align: left;
   font-weight: 700;
-  padding: 0.5em 0.8em;
+  padding: 0.35em 0.6em;
   border-bottom: 2px solid #ddd;
 }
 
 td {
-  padding: 0.4em 0.8em;
+  padding: 0.3em 0.6em;
   border-bottom: 1px solid #eee;
   vertical-align: top;
 }
@@ -109,7 +109,7 @@ td:first-child {
 /* Blockquotes */
 blockquote {
   border-left: 3px solid #ddd;
-  margin: 0.8em 0;
+  margin: 0.5em 0;
   padding: 0.4em 1em;
   color: #555;
 }
