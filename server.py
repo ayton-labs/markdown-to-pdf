@@ -80,12 +80,19 @@ def pdf():
                 "--standalone",
                 "--embed-resources",
                 f"--css={css_path}",
-                "--metadata", f"title={doc_name}",
+                "--metadata", "title=",
                 "-o", html_path,
             ],
             check=True,
             capture_output=True,
         )
+
+        # Inject doc name into <title> for PDF metadata
+        with open(html_path, "r") as f:
+            html_content = f.read()
+        html_content = html_content.replace("<title></title>", f"<title>{doc_name}</title>")
+        with open(html_path, "w") as f:
+            f.write(html_content)
 
         # WeasyPrint: HTML → PDF
         import weasyprint
