@@ -714,3 +714,54 @@ main {
   white-space: nowrap;
   border: 0;
 }
+
+/* ═══════════════ Mobile gate ═══════════════ */
+.mobile-gate {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-gate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 40px;
+    text-align: center;
+    background: #1a1210;
+  }
+
+  .mobile-gate-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #E06B4B 0%, #f09878 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  .mobile-gate h2 {
+    font-family: 'Nunito', 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #E06B4B;
+    margin-bottom: 12px;
+  }
+
+  .mobile-gate p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    max-width: 300px;
+  }
+
+  header, main, .modal-overlay {
+    display: none !important;
+  }
+}
