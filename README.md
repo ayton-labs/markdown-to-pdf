@@ -4,7 +4,7 @@
 
 A fast, privacy-first web app that turns your markdown into clean, professional PDFs — instantly.
 
-[Live App](https://md2pdf.up.railway.app) | Built by [Oliver Ayton](https://www.linkedin.com/in/oliverayton/)
+[Live App](https://www.markdown2pdf.co.uk/) | Built by [Oliver Ayton](https://www.linkedin.com/in/oliverayton/)
 
 ---
 
