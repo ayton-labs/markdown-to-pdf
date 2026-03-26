@@ -4,7 +4,7 @@
 
 A fast, privacy-first web app that turns your markdown into clean, professional PDFs — instantly.
 
-[Live App](https://md2pdf.up.railway.app) | Built by [Oliver Ayton](https://ollie.ai)
+[Live App](https://md2pdf.up.railway.app) | Built by [Oliver Ayton](https://www.linkedin.com/in/oliverayton/)
 
 ---
 
@@ -54,7 +54,7 @@ No React. No Next.js. No webpack. No 400MB `node_modules`. Just files that do th
 
 ```bash
 # Clone and run
-git clone https://github.com/oliverayton/markdown-to-pdf.git
+git clone https://github.com/ayton-labs/markdown-to-pdf.git
 cd markdown-to-pdf
 ./run.sh
 ```
@@ -153,5 +153,5 @@ MIT — do whatever you want with it.
 
 <p align="center">
   Built with irritation at paywalls and a mass of caffeine.<br>
-  <strong><a href="https://practicalai.coach">Practical AI</a></strong> — Oliver Ayton
+  <strong><a href="https://practicalai.coach">Practical AI</a></strong> — <a href="https://www.linkedin.com/in/oliverayton/">Oliver Ayton</a>
 </p>
