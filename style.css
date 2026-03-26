@@ -373,6 +373,12 @@ main {
   tab-size: 2;
 }
 
+.editor-pane.drag-over {
+  outline: 2px dashed #E06B4B;
+  outline-offset: -2px;
+  background: #fdf2ec;
+}
+
 .editor-pane textarea::placeholder {
   color: #ccc;
 }

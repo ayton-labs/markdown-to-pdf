@@ -215,13 +215,22 @@
 
   editor.addEventListener('input', updatePreview);
 
-  // Auto-detect document name from H1
-  editor.addEventListener('input', () => {
-    const h1Match = editor.value.match(/^#\s+(.+)/m);
+  // Auto-detect document name from H1 or first non-empty line (unless user edited it)
+  let userEditedName = false;
+  docName.addEventListener('input', () => { userEditedName = true; });
+
+  function updateDocName() {
+    if (userEditedName) return;
+    const text = editor.value;
+    const h1Match = text.match(/^#\s+(.+)/m);
     if (h1Match) {
       docName.value = h1Match[1].trim();
+    } else {
+      const firstLine = text.split('\n').find(l => l.trim());
+      if (firstLine) docName.value = firstLine.trim().substring(0, 80);
     }
-  });
+  }
+  editor.addEventListener('input', updateDocName);
 
   // Download PDF
   downloadBtn.addEventListener('click', async () => {
@@ -299,6 +308,7 @@
     "Fun fact: This tool exists because markdowntopdf.com has a paywall.",
     "Tip: Tab key inserts spaces, not a tab character.",
     "Tip: Tables work too. Use standard markdown table syntax.",
+    "Tip: Drag a .md file into the editor to load it instantly.",
   ];
   const tipEl = document.getElementById('tip');
   let tipIndex = Math.floor(Math.random() * tips.length);
@@ -340,6 +350,32 @@
     if (e.key === 'Escape' && welcomeModal.style.display === 'flex') {
       modalClose.click();
     }
+  });
+
+  // Drag-and-drop .md files
+  const editorPane = document.querySelector('.editor-pane');
+  editorPane.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    editorPane.classList.add('drag-over');
+  });
+  editorPane.addEventListener('dragleave', () => {
+    editorPane.classList.remove('drag-over');
+  });
+  editorPane.addEventListener('drop', (e) => {
+    e.preventDefault();
+    editorPane.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    if (!file.name.endsWith('.md') && !file.name.endsWith('.markdown') && !file.name.endsWith('.txt')) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      editor.value = reader.result;
+      userEditedName = false;
+      updateDocName();
+      updatePreview();
+      updateStats();
+    };
+    reader.readAsText(file);
   });
 
   // Init
