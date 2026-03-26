@@ -57,6 +57,7 @@ def sitemap():
 def pdf():
     md_text = request.data.decode("utf-8")
     style = request.args.get("style", "proposal")
+    doc_name = request.args.get("name", "document")
     css_path = os.path.join(APP_DIR, f"{style}.css")
 
     if not os.path.exists(css_path):
@@ -79,7 +80,7 @@ def pdf():
                 "--standalone",
                 "--embed-resources",
                 f"--css={css_path}",
-                "--metadata", "title=",
+                "--metadata", f"title={doc_name}",
                 "-o", html_path,
             ],
             check=True,
@@ -96,7 +97,7 @@ def pdf():
             pdf_path,
             mimetype="application/pdf",
             as_attachment=True,
-            download_name="document.pdf",
+            download_name=f"{doc_name}.pdf",
         )
     finally:
         for f in [md_path, html_path, pdf_path]:

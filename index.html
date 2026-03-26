@@ -232,7 +232,8 @@
     downloadBtn.disabled = true;
 
     try {
-      const res = await fetch('/pdf?style=proposal', {
+      const name = encodeURIComponent(docName.value.trim() || 'document');
+      const res = await fetch(`/pdf?style=proposal&name=${name}`, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: md,
